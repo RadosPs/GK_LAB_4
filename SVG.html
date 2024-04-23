@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SVG Animation Control</title>
+<script>
+// Funkcja do wstrzymywania i wznawiania animacji
+function toggleAnimation() {
+  var heptagon = document.querySelectorAll('use[*|href="#heptagon"]');
+  heptagon.forEach(function(hex) {
+    var animate = hex.querySelector('animateTransform');
+    if (animate.beginElement) {
+      if (animate.getAttribute('begin') !== 'indefinite') {
+        animate.setAttribute('begin', 'indefinite'); // Zatrzymaj animację
+        animate.endElement();
+      } else {
+        animate.removeAttribute('begin'); // Uruchom animację
+        animate.beginElement();
+      }
+    }
+  });
+}
+</script>
+</head>
+<body>
+
+<!-- Przycisk do kontrolowania animacji -->
+
+<button onclick="toggleAnimation()">Start/Stop Animation</button>
+<br>
+
+<svg width="1200px" height="600px" viewBox="0 0 1000 600" style="border:2px solid black" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"><!-- Definitions for reusable elements -->
+	<defs>
+		<!-- Zdefiniowanie siedmiokąta -->
+			<polygon id="heptagon" points="30.0,16.43 24.35,28.16 11.66,31.05 1.49,22.94 1.49,9.92 11.66,1.81 24.35,4.70" stroke="black" fill="white"/>
+	</defs> 						
+ 
+	<!-- Grupa kształtów -->
+		<g>
+			<!-- Pierwszy siedmiokąt z animacją obrotu -->
+				<use xlink:href="#heptagon" x="5" y="50">
+					<animateTransform attributeType="XML" attributeName="transform"
+                        type="rotate" from="0 20 65" to="360 20 65"
+                        dur="5s" repeatCount="indefinite"/>
+				</use>
+			<!-- Drugi siedmiokąt z animacją obrotu -->
+				<use xlink:href="#heptagon" x="247" y="24">
+					<animateTransform attributeType="XML" attributeName="transform"
+                        type="rotate" from="0 262 39" to="360 262 39"
+                        dur="5s" repeatCount="indefinite"/>
+				</use>
+			<!-- Czerwona linia łącząca siedmiokąty -->
+				<line x1="20" y1="65" x2="262" y2="39" stroke="red" stroke-width="2" />
+			<!-- Zielony trójkąt po środku czerownej lini -->
+				<polygon points="141,52 161,92 121,92" fill="green"/>
+		</g>
+ 
+	<!-- Grupa kształtów -->
+		<g transform="translate(600, 50)">
+			<!-- Pierwszy siedmiokąt z animacją obrotu -->
+				<use xlink:href="#heptagon" x="5" y="50">
+					<animateTransform attributeType="XML" attributeName="transform"
+                        type="rotate" from="0 20 65" to="360 20 65"
+                        dur="5s" repeatCount="indefinite"/>
+				</use>
+			<!-- Drugi siedmiokąt z animacją obrotu -->
+				<use xlink:href="#heptagon" x="247" y="24">
+					<animateTransform attributeType="XML" attributeName="transform"
+                        type="rotate" from="0 262 39" to="360 262 39"
+                        dur="5s" repeatCount="indefinite"/>
+					</use>
+			<!-- Czerwona linia łącząca siedmiokąty -->
+				<line x1="20" y1="65" x2="262" y2="39" stroke="red" stroke-width="2" />
+				
+			<!-- Fioletowy trójkąt po środku czerownej lini -->
+				<polygon points="141,52 171,122 111,122" fill="violet"/>
+		</g>
+ 
+	<!-- Grupa kształtów -->
+		<g transform="translate(300, 200)">
+			<!-- Pierwszy siedmiokąt z animacją obrotu -->
+				<use xlink:href="#heptagon" x="5" y="50">
+					<animateTransform attributeType="XML" attributeName="transform"
+                        type="rotate" from="0 20 65" to="360 20 65"
+                        dur="5s" repeatCount="indefinite"/>
+				</use>
+					<!-- Drugi siedmiokąt z animacją obrotu -->
+				<use xlink:href="#heptagon" x="247" y="24">
+					<animateTransform attributeType="XML" attributeName="transform"
+                        type="rotate" from="0 262 39" to="360 262 39"
+                        dur="5s" repeatCount="indefinite"/>
+				</use>
+			<!-- Czerwona linia łącząca siedmiokąty -->
+				<line x1="20" y1="65" x2="262" y2="39" stroke="red" stroke-width="2" />
+				
+			<!-- Niebieski trójkąt po środku czerownej lini -->
+				<polygon points="141,52 181,132 101,132" fill="blue"/>
+		</g>
+
+</svg>
+
+
+</body>
+</html>
